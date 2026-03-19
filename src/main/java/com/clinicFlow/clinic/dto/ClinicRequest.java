@@ -1,4 +1,5 @@
 package com.clinicFlow.clinic.dto;
 
-public class ClinicRequest {
+public record ClinicRequest (String name){
+
 }
