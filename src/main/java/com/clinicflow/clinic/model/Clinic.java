@@ -18,7 +18,7 @@ public class Clinic {
     private String name;
 
     @Column(nullable = false)
-    private boolean active = true;
+    private Boolean active = true;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)
@@ -52,7 +52,7 @@ public class Clinic {
         this.name = name;
     }
 
-    public boolean isActive() {
+    public boolean getActive() {
         return active;
     }
 
