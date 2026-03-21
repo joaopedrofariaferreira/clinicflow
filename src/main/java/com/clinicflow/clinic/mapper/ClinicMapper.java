@@ -4,7 +4,9 @@ import com.clinicflow.clinic.dto.ClinicRequest;
 import com.clinicflow.clinic.dto.ClinicResponse;
 import com.clinicflow.clinic.model.Clinic;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ClinicMapper {
 
     public Clinic toEntity(ClinicRequest request){
