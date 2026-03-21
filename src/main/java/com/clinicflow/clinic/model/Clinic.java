@@ -1,4 +1,4 @@
-package com.clinicFlow.clinic.model;
+package com.clinicflow.clinic.model;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;

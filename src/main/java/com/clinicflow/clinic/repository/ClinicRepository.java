@@ -1,6 +1,6 @@
-package com.clinicFlow.clinic.repository;
+package com.clinicflow.clinic.repository;
 
-import com.clinicFlow.clinic.model.Clinic;
+import com.clinicflow.clinic.model.Clinic;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;

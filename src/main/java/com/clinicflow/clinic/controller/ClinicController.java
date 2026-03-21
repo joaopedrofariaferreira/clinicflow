@@ -1,8 +1,7 @@
-package com.clinicFlow.clinic.controller;
+package com.clinicflow.clinic.controller;
 
-import com.clinicFlow.clinic.dto.ClinicRequest;
-import com.clinicFlow.clinic.dto.ClinicResponse;
-import com.clinicFlow.clinic.model.Clinic;
+import com.clinicflow.clinic.dto.ClinicRequest;
+import com.clinicflow.clinic.dto.ClinicResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

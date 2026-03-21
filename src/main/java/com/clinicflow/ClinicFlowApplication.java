@@ -1,4 +1,4 @@
-package com.clinicFlow;
+package com.clinicflow;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
