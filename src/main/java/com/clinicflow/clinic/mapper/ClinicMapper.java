@@ -12,6 +12,7 @@ public class ClinicMapper {
     public Clinic toEntity(ClinicRequest request){
         Clinic clinic = new Clinic();
         clinic.setName(request.name());
+        clinic.setCnpj(request.cnpj());
         return clinic;
     }
 
@@ -19,6 +20,7 @@ public class ClinicMapper {
         return new ClinicResponse(
                 clinic.getId(),
                 clinic.getName(),
+                clinic.getCnpj(),
                 clinic.getActive(),
                 clinic.getCreatedAt(),
                 clinic.getUpdatedAt()
