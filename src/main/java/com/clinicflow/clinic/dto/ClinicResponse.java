@@ -4,6 +4,7 @@ import java.util.UUID;
 //Quando criamos uma record, apeans declaramos o que precisamos, por padrão, umaclasse record já gera acessores
 public record ClinicResponse (    UUID id,
                                   String name,
+                                  String cnpj,
                                   Boolean active,
                                   LocalDateTime createdAt,
                                   LocalDateTime updatedAt){
