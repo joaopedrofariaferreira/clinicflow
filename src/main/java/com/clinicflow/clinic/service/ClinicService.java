@@ -8,6 +8,8 @@ import com.clinicflow.clinic.repository.ClinicRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ClinicService {
 
@@ -21,5 +23,10 @@ public class ClinicService {
         clinic.setActive(true); //seto status
         Clinic savedClinic = clinicRepository.save(clinic); //Crio outra clinica e salvo com as informaçoes de antes
         return clinicMapper.toResponse(savedClinic); // retorno a clinica salva
+    }
+
+    public List<Clinic> findAll(){
+        List<Clinic> clinics = clinicRepository.findAll();
+        return clinics;
     }
 }
