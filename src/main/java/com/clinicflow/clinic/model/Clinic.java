@@ -3,6 +3,7 @@ package com.clinicflow.clinic.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -16,6 +17,10 @@ public class Clinic {
 
     @Column(nullable = false)
     private String name;
+
+    @CNPJ
+    @Column(nullable = false, unique = true)
+    private String cnpj;
 
     @Column(nullable = false)
     private Boolean active = true;
@@ -74,5 +79,13 @@ public class Clinic {
 
     public void setUpdatedAt(LocalDateTime updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
     }
 }
