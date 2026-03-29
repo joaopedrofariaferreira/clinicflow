@@ -28,8 +28,8 @@ public class ClinicController {
     @PostMapping
     public ResponseEntity<ClinicResponse> createClinic (@RequestBody ClinicRequest clinicRequest) {
         ClinicResponse response = clinicService.create(clinicRequest);
-        return ResponseEntity.created(URI.create("/clinics/" + response.id()))
-                .body(response);
+        return ResponseEntity.created(URI.create("/clinics/" + response.id())).body(response);
+
     }
 
     @GetMapping
