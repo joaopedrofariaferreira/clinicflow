@@ -5,6 +5,7 @@ import com.clinicflow.clinic.dto.ClinicResponse;
 import com.clinicflow.clinic.mapper.ClinicMapper;
 import com.clinicflow.clinic.model.Clinic;
 import com.clinicflow.clinic.repository.ClinicRepository;
+import com.clinicflow.exception.ClinicAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,8 +20,12 @@ public class ClinicService {
     private ClinicRepository clinicRepository;
 
     public ClinicResponse create (ClinicRequest request){
+        if (clinicRepository.existsByCnpj(request.cnpj())) {
+            throw new ClinicAlreadyExistsException("Clinic with this CNPJ already exists");
+        }
         Clinic clinic = clinicMapper.toEntity(request); //crio uma clinica, chamando o método ToEntity
         clinic.setActive(true); //seto status
+
         Clinic savedClinic = clinicRepository.save(clinic); //Crio outra clinica e salvo com as informaçoes de antes
         return clinicMapper.toResponse(savedClinic); // retorno a clinica salva
     }
