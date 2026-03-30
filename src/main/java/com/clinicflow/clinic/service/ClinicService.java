@@ -7,10 +7,10 @@ import com.clinicflow.clinic.model.Clinic;
 import com.clinicflow.clinic.repository.ClinicRepository;
 import com.clinicflow.exception.ClinicAlreadyExistsException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ClinicService {
@@ -20,7 +20,7 @@ public class ClinicService {
     @Autowired
     private ClinicRepository clinicRepository;
 
-    public ClinicResponse create (ClinicRequest request){
+    public ClinicResponse create(ClinicRequest request) {
         if (clinicRepository.existsByCnpj(request.cnpj())) {
             throw new ClinicAlreadyExistsException("Clinic with this CNPJ already exists");
         }
@@ -30,8 +30,13 @@ public class ClinicService {
         return clinicMapper.toResponse(savedClinic); // retorno a clinica salva
     }
 
-    public List<Clinic> findAll(){
+    public List<Clinic> findAll() {
         List<Clinic> clinics = clinicRepository.findAll();
         return clinics;
+    }
+
+    public ClinicResponse findById(UUID id) {
+        Clinic clinic = clinicRepository.findById(id).orElseThrow(()-> new RuntimeException("Clinic with id " + id + " not found"));
+        return clinicMapper.toResponse(clinic); //retorna um clinic Response
     }
 }

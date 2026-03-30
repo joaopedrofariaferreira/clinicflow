@@ -5,6 +5,8 @@ import com.clinicflow.clinic.dto.ClinicResponse;
 import com.clinicflow.clinic.model.Clinic;
 import com.clinicflow.clinic.repository.ClinicRepository;
 import com.clinicflow.clinic.service.ClinicService;
+import org.apache.coyote.Response;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/clinics")
@@ -43,6 +46,12 @@ public class ClinicController {
                         clinic.getUpdatedAt()))
                 .toList();
 
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ClinicResponse> getClinicWithId(@PathVariable UUID id) {
+        ClinicResponse response = clinicService.findById(id);
         return ResponseEntity.ok(response);
     }
 }
