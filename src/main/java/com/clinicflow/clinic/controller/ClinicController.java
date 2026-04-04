@@ -24,8 +24,6 @@ public class ClinicController {
 
     @Autowired
     private ClinicService clinicService;
-    @Autowired
-    private ClinicRepository clinicRepository;
 
 
     @PostMapping
@@ -37,16 +35,8 @@ public class ClinicController {
 
     @GetMapping
     public ResponseEntity<List<ClinicResponse>> getClinic() {
-        List<ClinicResponse> response = clinicRepository.findAll().stream()
-                .map(clinic -> new ClinicResponse(clinic.getId(),
-                        clinic.getName(),
-                        clinic.getCnpj(),
-                        clinic.getActive(),
-                        clinic.getCreatedAt(),
-                        clinic.getUpdatedAt()))
-                .toList();
-
-        return ResponseEntity.ok(response);
+        List<ClinicResponse> responseList = clinicService.findAll();
+        return ResponseEntity.ok().body(responseList);
     }
 
     @GetMapping("/{id}")

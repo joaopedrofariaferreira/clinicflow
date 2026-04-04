@@ -6,6 +6,7 @@ import com.clinicflow.clinic.mapper.ClinicMapper;
 import com.clinicflow.clinic.model.Clinic;
 import com.clinicflow.clinic.repository.ClinicRepository;
 import com.clinicflow.exception.ClinicAlreadyExistsException;
+import com.clinicflow.exception.ClinicNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,13 +31,20 @@ public class ClinicService {
         return clinicMapper.toResponse(savedClinic); // retorno a clinica salva
     }
 
-    public List<Clinic> findAll() {
-        List<Clinic> clinics = clinicRepository.findAll();
-        return clinics;
+    public List<ClinicResponse> findAll() {
+        List<ClinicResponse> response = clinicRepository.findAll().stream()
+                .map(clinic -> new ClinicResponse(clinic.getId(),
+                        clinic.getName(),
+                        clinic.getCnpj(),
+                        clinic.getActive(),
+                        clinic.getCreatedAt(),
+                        clinic.getUpdatedAt()))
+                .toList();
+        return response;
     }
 
     public ClinicResponse findById(UUID id) {
-        Clinic clinic = clinicRepository.findById(id).orElseThrow(()-> new RuntimeException("Clinic with id " + id + " not found"));
+        Clinic clinic = clinicRepository.findById(id).orElseThrow(()-> new ClinicNotFoundException("Clinic with this id does not exist"));
         return clinicMapper.toResponse(clinic); //retorna um clinic Response
     }
 }
